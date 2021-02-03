@@ -3,7 +3,7 @@ Un webscraper el cual generará un excel con todos los deberes y sus fechas de e
 
 ### Pre-requisitos 
 
-Este webscraper utiliza las librerías BeautifulSoup4, Requests y OpenPyxl las cuales se deben instalar en su computador utilizando pip.
+Este webscraper utiliza las librerías BeautifulSoup4, Requests, lxml y OpenPyxl las cuales se deben instalar en su computador utilizando pip.
 Python 3 es preferible, para verificar su versión de python ejecute este comando en su terminal.
 ```
 > python --version
@@ -30,6 +30,7 @@ Las librerías deben ser instaladas para el correcto funcionamiento del webscrap
 > pip install beautifulsoup4
 > pip install requests
 > pip install openpyxl
+> pip install lxml
 ```
 
 ### Instalación 🔧
