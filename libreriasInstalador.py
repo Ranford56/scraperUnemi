@@ -1,10 +1,13 @@
-import sys 
-import subprocess
+import pip
 
-def packetManager(lib):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", lib])
+def packetInstaller(package):
+    if hasattr(pip, 'main'):
+        pip.main(['install', package])
+    else:
+        pip._internal.main(['install', package])
+
 
 libs = ["beautifulsoup4", "requests", "openpyxl", "lxml"]
 
 for lib in libs:
-    packetManager(lib)
+    packetInstaller(str(lib))
