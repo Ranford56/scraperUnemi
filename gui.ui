@@ -6,19 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>275</width>
-    <height>243</height>
+    <width>271</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>escobaUnemi</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="iniciarSesion">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>140</y>
+      <x>140</x>
+      <y>80</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -31,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>60</y>
+      <y>20</y>
       <width>113</width>
       <height>21</height>
      </rect>
@@ -41,17 +44,20 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>90</y>
+      <y>50</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>20</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -64,13 +70,32 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>50</y>
       <width>121</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>Contraseña</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="progress">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>241</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>introducir credenciales y pulsar botón</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
