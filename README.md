@@ -55,9 +55,6 @@ La razón de estas es por el tipo de conexión, Python a veces tiene problemas c
 Quiero enfatizar que estas deciciones no afectan la seguridad de sus credenciales ya que estas credenciales van directamente al sitio de https://pregradovirtual.unemi.edu.ec/login/index.php
 
 Al terminar la ejecución se va a crear un excel llamado "horario" con la información obtenida en la carpeta donde se ejecutó el programa 
-### Trucos
-
-En esta sección voy a demostrar varias modificaciones del código que, en mi opinión, son útiles. También espero que personas con mayor conocimiento que yo en Python puedan mejorarlo de cierta manera y contactarse conmigo para subir los cambios a github.
 
 ### Bugs conocidos
 
