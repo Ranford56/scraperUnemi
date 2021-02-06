@@ -69,6 +69,8 @@ Existen veces que los profesores modifican las tareas de maneras diferentes a la
 * BeautifulSoup4
 * Requests
 * OpenPyxl
+* Qt Designer
+* PyQt5
 
 ## Autores 
 
