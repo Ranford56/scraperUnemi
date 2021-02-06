@@ -118,7 +118,8 @@ class GUI(QMainWindow):
                         sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
                         sheet["B"+str(i)] = alt["alt"]
                         sheet["C"+str(i)] = fecha
-                        sheet["C"+str(i)].fill = entregado
+                        if fecha == "Enviado, dont worry":
+                            sheet["C"+str(i)].fill = entregado
 
                         i += 1
                         
