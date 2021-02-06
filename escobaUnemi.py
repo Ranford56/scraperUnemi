@@ -1,3 +1,11 @@
+#!/usr/bin/python 
+
+
+#   Desarrollado por: Raúl Alberto García Campodónico
+#
+#   Descripción: Un web scraper para la pagina de pregradovirtual.unemi.edu.ec que genera un excel con los deberes, cuestionario y foros y sus fechas
+
+
 from bs4 import BeautifulSoup as bs
 from requests import Session
 from openpyxl import Workbook
@@ -12,15 +20,18 @@ class GUI(QMainWindow):
     global s
     s = Session()
 
-   
-
-
+    #Conexion al gui y a las dos funciones al hacer click
     def __init__(self):
         super().__init__()
         uic.loadUi("gui.ui", self)
         self.iniciarSesion.clicked.connect(self.login)
-        #self.execute.clicked.connect(self.scraper)
-    
+        self.iniciarSesion.clicked.connect(self.progreso)
+
+    #Anuncia el final del programa
+    def progreso(self):
+        self.progress.setText("horario.xlsx ha sigo generado, ya puede cerrar esta ventana")
+
+    #Todo el proceso
     def login(self):
         username = self.username.text()
         password = self.password.text()
@@ -34,6 +45,7 @@ class GUI(QMainWindow):
         bs_content = bs(site.content, "html.parser")
         token = bs_content.find("input", {"name":"logintoken"})["value"]
         login_data = {"username":str(username),"password":str(password), "logintoken":token}
+        print(s.post(url, login_data))
         s.post(url, login_data)
 
         #Activacion y creación del excel 
@@ -107,6 +119,7 @@ class GUI(QMainWindow):
                         sheet["B"+str(i)] = alt["alt"]
                         sheet["C"+str(i)] = fecha
                         sheet["C"+str(i)].fill = entregado
+
                         i += 1
                         
                     if alt["alt"] == "Tarea":
@@ -131,7 +144,14 @@ class GUI(QMainWindow):
                                 sheet["B"+str(i)] = alt["alt"]
                                 sheet["C"+str(i)] = table[2].text
                                 i += 1
-        workbook.save(filename="horario.xlsx")
+        
+        #Verfica si la celda a1 esta vacia y si es asi, da un error de login
+        a1 = sheet["A1"]
+        if a1.value == None:
+            self.progress.setText("Se ha producido un error, revise las credenciales")
+        else:
+            workbook.save(filename="horario.xlsx")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
