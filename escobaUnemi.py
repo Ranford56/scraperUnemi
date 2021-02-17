@@ -11,6 +11,7 @@ from requests import Session
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill
 import sys
+import time 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
@@ -30,6 +31,8 @@ class GUI(QMainWindow):
     #Anuncia el final del programa
     def progreso(self):
         self.progress.setText("horario.xlsx ha sigo generado, ya puede cerrar esta ventana")
+        time.sleep(10)
+        sys.exit()
 
     #Todo el proceso
     def login(self):
@@ -56,6 +59,7 @@ class GUI(QMainWindow):
         sheet.column_dimensions["A"].width = 45
         sheet.column_dimensions["B"].width = 20
         sheet.column_dimensions["C"].width = 35
+        sheet.column_dimensions["D"].width = 45
 
         #Proceso de recolleción de datos
         i = 1
@@ -96,6 +100,8 @@ class GUI(QMainWindow):
                         sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
                         sheet["B"+str(i)] = alt["alt"]
                         sheet["C"+str(i)] = datePrint.strip()
+                        sheet["D"+str(i)] = "ir a la tarea"
+                        sheet["D"+str(i)].hyperlink = minia.attrs["href"]
                         i += 1
                     if alt["alt"] == "Cuestionario":
                         pSearcher = readable.find("div", class_="quizinfo")                    
@@ -120,6 +126,8 @@ class GUI(QMainWindow):
                         sheet["C"+str(i)] = fecha
                         if fecha == "Enviado, dont worry":
                             sheet["C"+str(i)].fill = entregado
+                        sheet["D"+str(i)] = "ir a la tarea"
+                        sheet["D"+str(i)].hyperlink = minia.attrs["href"]
 
                         i += 1
                         
@@ -131,6 +139,8 @@ class GUI(QMainWindow):
                             sheet["B"+str(i)] = alt["alt"]
                             sheet["C"+str(i)] = "Entregado, dont worry"
                             sheet["C"+str(i)].fill = entregado
+                            sheet["D"+str(i)] = "ir a la tarea"
+                            sheet["D"+str(i)].hyperlink = minia.attrs["href"]
                             i += 1
                         else:
                             if materia.text == "ALGEBRA LINEAL - [TI01-01] - C1 - TICS-ENLINEA: Vista: Usuario":
@@ -138,12 +148,16 @@ class GUI(QMainWindow):
                                 sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
                                 sheet["B"+str(i)] = alt["alt"]
                                 sheet["C"+str(i)] = table[3].text
+                                sheet["D"+str(i)] = "ir a la tarea"
+                                sheet["D"+str(i)].hyperlink = minia.attrs["href"]
                                 i += 1
                             else:
                                 nombreMateria = materia.text
                                 sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
                                 sheet["B"+str(i)] = alt["alt"]
                                 sheet["C"+str(i)] = table[2].text
+                                sheet["D"+str(i)] = "ir a la tarea"
+                                sheet["D"+str(i)].hyperlink = minia.attrs["href"]
                                 i += 1
         
         #Verfica si la celda a1 esta vacia y si es asi, da un error de login
@@ -152,6 +166,7 @@ class GUI(QMainWindow):
             self.progress.setText("Se ha producido un error, revise las credenciales")
         else:
             workbook.save(filename="horario.xlsx")
+            
 
 
 if __name__ == "__main__":
