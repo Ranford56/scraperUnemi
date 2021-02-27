@@ -5,7 +5,7 @@ Un webscraper el cual generará un excel con todos los deberes y sus fechas de e
 Solo se descarga todos los archivos en formato .zip y se extraen para su ejecución.
 
 Primero se tiene que ejecutar el archivo instaladorDeLibrerias.py, el cual instala todas las librerias necesarias, y al terminar la ejecución de este, se ejecuta escobaUnemi.py, el cual es el webscraper que genera el excel
-```
+```shell
 > python3 instaladorDeLibrerias.py
 > python3 escobaUnemi.py
 ```
@@ -14,28 +14,33 @@ Primero se tiene que ejecutar el archivo instaladorDeLibrerias.py, el cual insta
 
 Este webscraper utiliza las librerías BeautifulSoup4, Requests, lxml y OpenPyxl las cuales se deben instalar en su computador utilizando pip.
 Python 3 es preferible, para verificar su versión de python ejecute este comando en su terminal.
-```
+```shell
 > python3 --version
 ```
 Si al ejecutarlo, la terminal devuelve una version de Python 3 o mayor, como lo hace en el ejemplo de abajo, podemos saltar el paso de actualizar Python.
-```
+```shell
 Python 3.7.0 
 ```
-Si la version de Python es menor a 3 se puede actualizar Python descargargando el ejecutable desde el sitio https://www.python.org/ftp/python/3.7.4/python-3.7.4.exe y ejecutar el instalador (si se instala de esta manera, asegurarse de selecciónar la opcion pip en el proceso de instalación).
+Si la version de Python es menor a 3 se puede actualizar Python descargargando el ejecutable desde el sitio https://www.python.org/ftp/python/3.7.4/python-3.7.4.exe y ejecutar el instalador (si se instala de esta manera, asegurarse de selecciónar la opcion pip en el proceso de instalación). Otra manera de instalar python3 es ejecutando el programa shell desde la terminal.
+
+```shell
+> cd ruta/a/carpeta/extraida
+> sh descargaPython.sh
+```
 
 Para instalar pip se necesita descargar el archivo _get-pip.py_, ell cual se puede obtener con este comando:
-```
+```shell
 > curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 ```
 
 y ejecutarlo con python
-```
+```shell
 > python3 get-pip.py
 ```
 
 ### Instalación de librerías
 Las librerías deben ser instaladas para el correcto funcionamiento del webscraper utilizando pip con los siguientes comandos:
-```
+```shell
 > pip3 install beautifulsoup4
 > pip3 install requests
 > pip3 install openpyxl
