@@ -60,7 +60,7 @@ def meh(username, password):
     #Proceso de recolleción de datos
     i = 1
         #Array de links de los sitios de calificaciones de cada materia 
-    links = ['https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4870', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4871', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4872', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4874', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4876', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=4877']
+    links = ['https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=319', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=314', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=315', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=317', 'https://pregradovirtual.unemi.edu.ec/grade/report/user/index.php?id=318']
 
     #Definición de variables y herramintas para el proceso de recolección de datos
     arrayTareasLinks = []
@@ -71,7 +71,7 @@ def meh(username, password):
     for site in links:
         html = s.get(site)
         soup = bs( html.content, "lxml" )
-        materia = soup.find("h1")
+        materia = soup.find("h3", class_="page-title")
         a = soup.find_all("a", class_="gradeitemheader")
         for minia in a:
             alts = minia.find_all("img", class_="itemicon")
@@ -142,24 +142,14 @@ def meh(username, password):
                         sheet["E"+str(i)].hyperlink = minia.attrs["href"]
                         i += 1
                     else:
-                        if materia.text == "ALGEBRA LINEAL - [TI01-01] - C1 - TICS-ENLINEA: Vista: Usuario":
-                            nombreMateria = materia.text
-                            sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
-                            sheet["B"+str(i)] = h2.text
-                            sheet["C"+str(i)] = alt["alt"]
-                            sheet["D"+str(i)] = table[3].text
-                            sheet["E"+str(i)] = "ir a la tarea"
-                            sheet["E"+str(i)].hyperlink = minia.attrs["href"]
-                            i += 1
-                        else:
-                            nombreMateria = materia.text
-                            sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
-                            sheet["B"+str(i)] = h2.text
-                            sheet["C"+str(i)] = alt["alt"]
-                            sheet["D"+str(i)] = table[2].text
-                            sheet["E"+str(i)] = "ir a la tarea"
-                            sheet["E"+str(i)].hyperlink = minia.attrs["href"]
-                            i += 1
+                        nombreMateria = materia.text
+                        sheet["A"+str(i)] = nombreMateria.split("-", 1)[0]
+                        sheet["B"+str(i)] = h2.text
+                        sheet["C"+str(i)] = alt["alt"]
+                        sheet["D"+str(i)] = table[2].text
+                        sheet["E"+str(i)] = "ir a la tarea"
+                        sheet["E"+str(i)].hyperlink = minia.attrs["href"]
+                        i += 1
         
     #Verfica si la celda a1 esta vacia y si es asi, da un error de login
     a1 = sheet["A1"]
@@ -172,7 +162,7 @@ def meh(username, password):
         while True:
             event,values = window.read()
             if event in (None, 'cancel'):
-                exit()
+                quit()
             if event == 'submit':
                 
                 username = values['usernameInput']
