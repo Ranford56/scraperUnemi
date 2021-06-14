@@ -1,12 +1,15 @@
 # scraperUnemi
 Un webscraper el cual generará un excel con todos los deberes y sus fechas de entrega a los estudiantes de la carrera de TICS en linea en la Universidad Estatal de Milagro.
 
+## Donaciones
+https://paypal.me/ranford56?locale.x=es_XC
+
 ## Instalación y Ejcución
 Solo se descarga todos los archivos en formato .zip y se extraen para su ejecución.
 
 Primero se tiene que ejecutar el archivo instaladorDeLibrerias.py, el cual instala todas las librerias necesarias, y al terminar la ejecución de este, se ejecuta escobaUnemi.py, el cual es el webscraper que genera el excel
 ```shell
-> python3 instaladorDeLibrerias.py
+> python3 instalarLibrerias.py
 > python3 escobaUnemi.py
 ```
 
@@ -39,13 +42,9 @@ y ejecutarlo con python
 ```
 
 ### Instalación de librerías
-Las librerías deben ser instaladas para el correcto funcionamiento del webscraper utilizando pip con los siguientes comandos:
+Para la instalacion de las librerias se necesita ejecutar el archivo `instalarLibrerias.py` de la siguiente manera:
 ```shell
-> pip3 install beautifulsoup4
-> pip3 install requests
-> pip3 install openpyxl
-> pip3 install lxml
-> pip3 install pyqt5
+> python3 instalarLibrerias.py
 ```
 
 ## Ejecución
@@ -56,14 +55,16 @@ Una vez introducidas las credenciales se van a devolver varias de estas alertas
 ```
 InsecureRequestWarning: Unverified HTTPS request is being made to host 'pregradovirtual.unemi.edu.ec'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
 ```
-La razón de estas es por el tipo de conexión, Python a veces tiene problemas con la verificación de conexión así que para asegurar el funcionamiento del progama en todos los dispocitivos la verificación esta desactivada.
+La razón de estas es por el tipo de conexión, Python a veces tiene problemas con la verificación de conexión así que para asegurar el funcionamiento del progama en todos los dispositivos la verificación esta desactivada.
 Quiero enfatizar que estas deciciones no afectan la seguridad de sus credenciales ya que estas credenciales van directamente al sitio de https://pregradovirtual.unemi.edu.ec/login/index.php
 
-Al terminar la ejecución se va a crear un excel llamado "horario" con la información obtenida en la carpeta donde se ejecutó el programa 
+Al terminar la ejecución se va a crear un excel llamado "horarioUnemi.xslx" con la información obtenida en la carpeta donde se ejecutó el programa 
 
 ### Bugs conocidos
 
-Existen veces que los profesores modifican las tareas de maneras diferentes a las que el programa busca, asi que de vez en cuando en vez de imprimir la fecha de entrega, se imprime otro tipo de información, no hay una solución para esto además de esperar a que los profesores sigan mandando tareas de la misma manera que lo hacen siempre 
+Existen veces que los profesores modifican las tareas de maneras diferentes a las que el programa busca, asi que de vez en cuando en vez de imprimir la fecha de entrega, se imprime otro tipo de información, no hay una solución para esto además de esperar a que los profesores sigan mandando tareas de la misma manera que lo hacen siempre.
+
+Otro bug conocido es cuando los profesores mandan deberes o cuestionarios los cuales no son validos o no sirven, seguire trabajando para buscar una manera de que `escobaUnemi.py` pueda diferenciar entre ambos con seguridad y eliminarlos del excel generado.
 
 ## Construido con 
 
@@ -71,8 +72,7 @@ Existen veces que los profesores modifican las tareas de maneras diferentes a la
 * BeautifulSoup4
 * Requests
 * OpenPyxl
-* Qt Designer
-* PyQt5
+* PySimpleGUI
 
 ## Autores 
 
@@ -86,5 +86,6 @@ Este proyecto está bajo la Licencia GNU Lesser General Public License v3.0 - mi
 
 ## Expresiones de Gratitud 
 
-* Este proeycto comenzó por necesidad propia ya que soy experto en olvidarme en deberes, pero al desarrollarlo quise compartirlo con todos los que lo necesitan.
-* Si este programa les sirvio de alguna manera, la manera que pueden agradacerme es no compartiendo este archivo directamente con otros compañeros, a mi me ayuda muchisimo que lo descarguen desde mi github. 
+Este proeycto comenzó por necesidad propia ya que soy experto en olvidarme en deberes, pero al desarrollarlo quise compartirlo con todos los que lo necesitan.
+Si este programa les sirvio de alguna manera, la manera que pueden agradacerme es no compartiendo este archivo directamente con otros compañeros, a mi me ayuda muchisimo que lo descarguen desde mi github. 
+ 
