@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup as bs
 from requests import Session
 import requests, json
-from datetime import datetime
+from datetime import datetime, date
 import locale
 from todoist.api import TodoistAPI, json_default
 locale.setlocale(locale.LC_TIME, '')
@@ -259,22 +259,43 @@ def search(name):
         for keyval in items:
             if name == keyval['description']:
                 return keyval['id']
+def days_between(d1, d2):
+    print(d1)
+    obj = datetime.strptime(d2, '%Y-%m-%d').date()
+    print(obj)
+    print((obj - d1).days)
+    return (obj - d1).days
 
 def addTask(nombre, materia, fecha, link):
     if search(link):
         updateTask(fecha, search(link))
     else:
-        data = api.projects.get_data(2271037183)
-        meh = data['items']
-        if meh ==[]:
-            task = api.items.add(content=str(materia)+'-'+str(nombre), description=link, project_id=2256798468, section_id=57173105, due={'date': fecha, 'is_recurring': False})
-        else:
-            task = api.items.add(content=str(materia)+'-'+str(nombre), description=link, project_id=2256798468, section_id=57173105, due={'date': fecha, 'is_recurring': False})
+        task = api.items.add(content=str(materia)+'-'+str(nombre), description=link, project_id=2256798468, section_id=57173105, due={'date': fecha, 'is_recurring': False})
+        # data = api.projects.get_data(2271037183)
+        # meh = data['items']
+        # if meh ==[]:
+        #     print('primero')
+        #     task = api.items.add(content=str(materia)+'-'+str(nombre), description=link, project_id=2256798468, section_id=57173105, due={'date': fecha, 'is_recurring': False})
+        # elif days_between(date.today(), fecha, link) > -8:
+        #     print('se pudo')
+        #     task = api.items.add(content=str(materia)+'-'+str(nombre), description=link, project_id=2256798468, section_id=57173105, due={'date': fecha, 'is_recurring': False})
+        # else:
+        #     print('no vale')
+        #     deleteTask(fecha, search(link))
 
 def updateTask(fecha, Id):
-    item = api.items.get_by_id(Id)
-    item.update(due={'date': fecha, 'is_recurring': False})
+    if days_between(date.today(), fecha) > -8:
+        print('se pudo')
+        item = api.items.get_by_id(Id)
+        item.update(due={'date': fecha, 'is_recurring': False})
+    else:
+        print('no vale')
+        deleteTask(Id)
 
+
+def deleteTask(Id):
+    item = api.items.get_by_id(Id)
+    item.delete()
 
 meh('user', 'pass')
 api.commit()
